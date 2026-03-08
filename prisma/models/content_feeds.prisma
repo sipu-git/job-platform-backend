@@ -1,0 +1,21 @@
+enum ContentType {
+  ARTICLE
+  POST
+  ANNOUNCEMENT
+  JOB_UPDATE
+}
+model ContentFeed {
+  id          String          @id @default(uuid())
+  authorId    String
+  type        ContentType
+  title       String
+  content     String
+  mediaUrl    String?
+  isPublished Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  author      Candidate            @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([authorId])
+  @@index([type])
+  @@map("content_feeds")
+}

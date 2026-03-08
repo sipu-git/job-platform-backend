@@ -1,0 +1,23 @@
+model ParsedResume {
+    id             String  @id @default(uuid())
+    userId         String
+    fullName       String?
+    email          String?
+    phone          String?
+    summary        String?
+    skills         Json?
+    experience     Json?
+    education      Json?
+    certifications Json?
+    languages      Json?
+    rawText        String?
+    fileUrl        String
+
+    parsedAt DateTime @default(now())
+
+    candidate Candidate @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+    @@index([email])
+    @@map("parsed_resumes")
+}

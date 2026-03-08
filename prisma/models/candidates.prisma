@@ -1,0 +1,26 @@
+enum UserRole {
+  ADMIN
+  RECRUITER
+  CANDIDATE
+}
+
+model Candidate {
+  id            String        @id @default(uuid())
+  email         String        @unique
+  passwordHash  String
+  role          UserRole
+  firstName     String
+  lastName      String
+  phone         String?
+  avatarUrl     String?
+  isVerified    Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  applications  Application[]
+  content_feeds ContentFeed[]
+  parsed_resume ParsedResume[]
+  // Relations
+  jobs          Jobs[]
+
+  @@map("users")
+}

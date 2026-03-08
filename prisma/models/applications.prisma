@@ -1,0 +1,33 @@
+enum ApplicationStatus {
+    APPLIED
+    UNDER_REVIEW
+    SHORTLISTED
+    INTERVIEW
+    OFFERED
+    REJECTED
+    WITHDRAWN
+}
+
+model Application {
+    id String @id @default(uuid())
+
+    jobId         String
+    candidateId   String
+    resumeId      String
+    coverLetter   String?
+    status        ApplicationStatus
+    atsScore      Int?
+    atsBreakdown  Json?
+    atsRank       Int?
+    isShortlisted Boolean           @default(false)
+    appliedAt     DateTime          @default(now())
+    updatedAt     DateTime          @updatedAt
+    // Relations
+    job           Jobs              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+    candidate     Candidate         @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+    @@unique([jobId, candidateId]) // One candidate can apply once per job
+    @@index([jobId])
+    @@index([candidateId])
+    @@map("applications")
+}

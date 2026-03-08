@@ -1,0 +1,37 @@
+enum EmploymentType {
+    FULL_TIME
+    PART_TIME
+    CONTRACT
+    INTERNSHIP
+    FREELANCE
+}
+
+enum JobStatus {
+    DRAFT
+    OPEN
+    CLOSED
+    ARCHIVED
+}
+
+model Jobs {
+    id             String         @id @default(uuid())
+    recruiterId    String
+    title          String
+    description    String
+    requirements   String
+    location       String
+    salaryMin      Decimal
+    salaryMax      Decimal
+    employmentType EmploymentType
+    status         JobStatus
+    atsKeywords    Json
+    atsMinScore    Int
+    atsWeights     Json
+    createdAt      DateTime       @default(now())
+    updatedAt      DateTime       @updatedAt
+    applications   Application[]
+    recruiter      Candidate      @relation(fields: [recruiterId], references: [id])
+
+    @@index([title, description])
+    @@index([location])
+}
