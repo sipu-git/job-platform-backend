@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { processResume } from "../services/resume.service";
+import { processResume } from "./service/resume.service";
 
 export const uploadResume = async (req: Request, res: Response) => {
     try {

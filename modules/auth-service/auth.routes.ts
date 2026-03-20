@@ -1,5 +1,5 @@
 import express from 'express'
-import { loginUser, registerUser, viewUserProfile } from '../controllers/users.controller'
+import { loginUser, registerUser, viewUserProfile } from './auth.controller'
 import multer from 'multer';
 const uploadProfile = multer({ storage: multer.memoryStorage() })
 const router = express.Router()

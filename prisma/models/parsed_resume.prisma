@@ -12,7 +12,8 @@ model ParsedResume {
     languages      Json?
     rawText        String?
     fileUrl        String
-
+    applications Application[]
+    
     parsedAt DateTime @default(now())
 
     candidate Candidate @relation(fields: [userId], references: [id], onDelete: Cascade)

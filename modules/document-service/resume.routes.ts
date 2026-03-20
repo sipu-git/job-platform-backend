@@ -1,7 +1,7 @@
 import express from 'express'
-import { uploadResume } from '../controllers/resume.controller'
+import { uploadResume } from './resume.controller'
 import multer from 'multer'
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { authMiddleware } from '../../shared/middleware/auth.middleware'
 
 const router = express.Router()
 const uploadDoc = multer({ storage: multer.memoryStorage() })

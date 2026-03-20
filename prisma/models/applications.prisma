@@ -25,7 +25,7 @@ model Application {
     // Relations
     job           Jobs              @relation(fields: [jobId], references: [id], onDelete: Cascade)
     candidate     Candidate         @relation(fields: [candidateId], references: [id], onDelete: Cascade)
-
+    resume ParsedResume             @relation(fields:[resumeId],references:[id],onDelete:Cascade)
     @@unique([jobId, candidateId]) // One candidate can apply once per job
     @@index([jobId])
     @@index([candidateId])

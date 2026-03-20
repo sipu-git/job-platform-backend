@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { createUser, signinUser, viewProfile } from "../services/users.service";
-import { uploadAvtar } from "../services/s3.service";
+import { createUser, signinUser, viewProfile } from "./service/auth.service";
+import { uploadAvtar } from "./service/s3-avatar.service";
 
 export const registerUser = async (req: Request, res: Response) => {
     try {

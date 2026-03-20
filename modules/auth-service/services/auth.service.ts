@@ -1,6 +1,6 @@
-import { UserRole } from "../../generated/prisma/enums";
-import { prisma } from "../../lib/prisma";
-import { User } from "../types/users/model.types";
+import { UserRole } from "../../../generated/prisma/enums";
+import { prisma } from "../../../lib/prisma";
+import { User } from "../types/auth.types";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 

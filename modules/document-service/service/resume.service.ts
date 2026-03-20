@@ -1,5 +1,5 @@
 import { extractText } from "../configs/extractText"
-import { prisma } from "../../lib/prisma"
+import { prisma } from "../../../lib/prisma"
 import { parsedResumeWithAi } from "./genAi.service"
 import { uploadResumeToS3 } from "./s3.service"
 
@@ -26,8 +26,8 @@ export const processResume = async (userId: string, file: Express.Multer.File) =
     return savedData;
 }
 
-export const viewResume =async (userId:string)=>{
-    return prisma.parsedResume.findFirst({
+export const viewResumes =async (userId:string)=>{
+    return prisma.parsedResume.findMany({
         where:{userId},
         orderBy:{parsedAt:"asc"}
     })
